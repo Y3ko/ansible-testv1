@@ -1,4 +1,3 @@
----
 - hosts: nfs
   tasks:
     - name: Test dizini oluştur
