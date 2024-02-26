@@ -7,5 +7,5 @@
 
     - name: Test dosyası oluştur
       ansible.builtin.copy:
-        content: "Ansible test dosyası başarıyla oluşturuldu. Testv122\n"
+        content: "Ansible test dosyası başarıyla oluşturuldu. Testv122\n 1212"
         dest: "~/ansible_test/test.txt"
