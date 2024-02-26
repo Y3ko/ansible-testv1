@@ -1,0 +1,12 @@
+---
+- hosts: nfs
+  tasks:
+    - name: Test dizini oluştur
+      ansible.builtin.file:
+        path: "~/ansible_test"
+        state: directory
+
+    - name: Test dosyası oluştur
+      ansible.builtin.copy:
+        content: "Ansible test dosyası başarıyla oluşturuldu. Testv1\n"
+        dest: "~/ansible_test/test.txt"
