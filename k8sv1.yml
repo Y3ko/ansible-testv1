@@ -2,8 +2,9 @@
 - name: Nginx Deployment
   hosts: localhost
   tasks:
-    name: Nginx'i Kubernetes üzerinde başlat
+    - name: Nginx'i Kubernetes üzerinde başlat
       community.kubernetes.k8s:
+        state: present
         definition:
           apiVersion: apps/v1
           kind: Deployment
@@ -20,7 +21,7 @@
                   app: nginx
               spec:
                 containers:
-                - name: nginx
-                  image: nginx:latest
-                  ports:
-                  - containerPort: 80
+                  - name: nginx
+                    image: nginx:latest
+                    ports:
+                      - containerPort: 80
