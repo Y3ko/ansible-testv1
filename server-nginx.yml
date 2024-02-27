@@ -1,7 +1,6 @@
 ---
 - name: NFS Hostuna Nginx Kur ve HTML Sayfası Oluştur
   hosts: nfs
-  become: yes
   vars:
     html_content: "<h1>Merhaba Dünya!</h1><p>Bu sayfa {{ ansible_hostname }} üzerinde çalışıyor.</p>"
   tasks:
