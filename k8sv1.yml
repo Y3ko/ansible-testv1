@@ -1,12 +1,19 @@
 ---
 - hosts: localhost
+  gather_facts: no
   collections:
     - kubernetes.core
   tasks:
-    - name: Create a pod
+    - name: Check Kubernetes collection is installed
+      assert:
+        that:
+          - "kubernetes.core" in ansible_collections
+        msg: "Kubernetes collection is not installed. Install it using 'ansible-galaxy collection install kubernetes.core'."
+
+    - name: Pod oluşturma
       kubernetes.core.k8s:
         state: present
-        definition:
+        definition: |
           apiVersion: v1
           kind: Pod
           metadata:
