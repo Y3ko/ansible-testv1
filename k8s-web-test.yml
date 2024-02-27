@@ -12,6 +12,7 @@
           apiVersion: apps/v1
           kind: Deployment
           metadata:
+            namespace: default
             name: awx-test-web-server
             labels:
               app: awx-test-web
