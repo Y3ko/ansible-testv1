@@ -47,6 +47,7 @@
           kind: ConfigMap
           metadata:
             name: awx-test-web-content
+            namespace: default
           data:
             index.html: |
               <!DOCTYPE html>
@@ -68,6 +69,7 @@
           kind: Service
           metadata:
             name: awx-test-web-service
+            namespace: default
           spec:
             type: NodePort
             selector:
@@ -84,6 +86,7 @@
           kind: Ingress
           metadata:
             name: awx-test-web-ingress
+            namespace: default
           spec:
             rules:
             - http:
