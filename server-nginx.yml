@@ -9,13 +9,16 @@
         name: nginx
         state: latest
       when: ansible_os_family == "Debian"
+      become: yes
 
     - name: HTML Dosyasını Oluştur
       copy:
         content: "{{ html_content }}"
         dest: /var/www/html/index.html
+      become: yes
 
     - name: Nginx Servisini Yeniden Başlat
       service:
         name: nginx
         state: restarted
+      become: yes
