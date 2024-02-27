@@ -7,10 +7,10 @@
     websites:
       - name: awxtest
         host: awxtest.yekcan.com
-        content: "Test basari ile tamamlandi."
+        content: "Test surum burada."
       - name: awxlive
         host: awxlive.yekcan.com
-        content: "Live sürümü burada."
+        content: "Live surum burada."
   tasks:
     - name: Her site için Nginx Deployment Oluştur
       kubernetes.core.k8s:
