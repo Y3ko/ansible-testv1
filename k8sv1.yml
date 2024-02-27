@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
     - name: Nginx'i Kubernetes üzerinde başlat
-      community.kubernetes.k8s:
+      kubernetes.core:
         definition:
           apiVersion: apps/v1
           kind: Deployment
