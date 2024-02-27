@@ -7,7 +7,7 @@
     - name: Check Kubernetes collection is installed
       assert:
         that:
-          - "kubernetes.core" in ansible_collections
+          - "kubernetes.core"
         msg: "Kubernetes collection is not installed. Install it using 'ansible-galaxy collection install kubernetes.core'."
 
     - name: Pod oluşturma
