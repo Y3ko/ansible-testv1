@@ -1,0 +1,103 @@
+---
+- name: AWX Test Server Deployment
+  hosts: localhost
+  collections:
+    - kubernetes.core
+  gather_facts: no
+  tasks:
+    - name: Nginx Deployment Oluştur
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            namespace: default
+            name: awx-test-web-server
+            labels:
+              app: awx-test-web
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: awx-test-web
+            template:
+              metadata:
+                labels:
+                  app: awx-test-web
+              spec:
+                containers:
+                  - name: nginx
+                    image: nginx:latest
+                    ports:
+                      - containerPort: 80
+                    volumeMounts:
+                      - name: web-content
+                        mountPath: /usr/share/nginx/html
+                volumes:
+                  - name: web-content
+                    configMap:
+                      name: awx-test-web-content
+
+    - name: Sayfa içeriği oluştur
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: awx-test-web-content
+            namespace: default
+          data:
+            index.html: |
+              <!DOCTYPE html>
+              <html>
+              <head>
+              <title>AWX Test Web Server</title>
+              </head>
+              <body>
+              <h1>AWX Test Web Server</h1>
+              <p>Test basari ile tamamlandi.</p>
+              </body>
+              </html>
+
+    - name: Servis oluşturma
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: awx-test-web-service
+            namespace: default
+          spec:
+            type: ClusterIP
+            selector:
+              app: awx-test-web
+            ports:
+              - port: 80
+                targetPort: 80
+
+    - name: Ingress Yapılandırıldı
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: networking.k8s.io/v1
+          kind: Ingress
+          metadata:
+            name: awx-test-web-ingress
+            namespace: default
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+          spec:
+            rules:
+            - host: awxtest.yekcan.com
+              http:
+                paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                      service:
+                        name: awx-test-web-service
+                        port:
+                          number: 80
