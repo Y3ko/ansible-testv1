@@ -1,27 +1,20 @@
 ---
 - hosts: localhost
-  gather_facts: no
   collections:
     - kubernetes.core
   tasks:
-    - name: Kubernetes koleksiyonunun yüklü olduğunu kontrol et
-      assert:
-        that:
-          - "kubernetes.core" in ansible_collections
-        msg: "Kubernetes koleksiyonu yüklü değil. 'ansible-galaxy collection install kubernetes.core' komutunu kullanarak yükleyin."
-
-    - name: Pod oluştur
+    - name: Create a pod
       kubernetes.core.k8s:
         state: present
-        definition: |
+        definition:
           apiVersion: v1
           kind: Pod
           metadata:
-            name: "k8stest-v1"
+            name: "utilitypod-1"
             namespace: default
             labels:
               app: galaxy
           spec:
             containers:
-              - name: k8stest
+              - name: utilitypod
                 image: busybox
