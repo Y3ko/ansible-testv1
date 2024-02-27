@@ -71,7 +71,7 @@
             name: awx-test-web-service
             namespace: default
           spec:
-            type: NodePort
+            type: ClusterIP
             selector:
               app: awx-test-web
             ports:
@@ -89,7 +89,8 @@
             namespace: default
           spec:
             rules:
-            - http:
+            - host: awxtest.yekcan.com
+              http:
                 paths:
                   - path: /
                     pathType: Prefix
