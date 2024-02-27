@@ -5,7 +5,6 @@
   tasks:
     - name: Create a pod
       kubernetes.core.k8s:
-        kubeconfig: $HOME/.kube/config
         state: present
         definition:
           apiVersion: v1
