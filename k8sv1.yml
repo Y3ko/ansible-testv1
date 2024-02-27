@@ -1,21 +1,26 @@
 ---
-- hosts: localhost
-  gather_facts: no
-  collections:
-    - kubernetes.core
+- name: Nginx Deployment
+  hosts: localhost
   tasks:
-    - name: Pod oluşturma
-      kubernetes.core.k8s:
-        state: present
-        definition: |
-          apiVersion: v1
-          kind: Pod
+    - name: Nginx'i Kubernetes üzerinde başlat
+      community.kubernetes.k8s:
+        definition:
+          apiVersion: apps/v1
+          kind: Deployment
           metadata:
-            name: "utilitypod-1"
-            namespace: default
-            labels:
-              app: galaxy
+            name: nginx-deployment
           spec:
-            containers:
-              - name: utilitypod
-                image: busybox
+            replicas: 2
+            selector:
+              matchLabels:
+                app: nginx
+            template:
+              metadata:
+                labels:
+                  app: nginx
+              spec:
+                containers:
+                - name: nginx
+                  image: nginx:latest
+                  ports:
+                  - containerPort: 80
