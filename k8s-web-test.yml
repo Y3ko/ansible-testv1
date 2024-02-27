@@ -5,10 +5,10 @@
   gather_facts: no
   vars:
     websites:
-      - name: awxtest
+      - name: AWXTEST
         host: awxtest.yekcan.com
         content: "Test surum burada."
-      - name: awxlive
+      - name: AWXLIVE
         host: awxlive.yekcan.com
         content: "Live surum burada."
   tasks:
