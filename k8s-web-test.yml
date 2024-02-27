@@ -1,10 +1,12 @@
 ---
-- name: Deploy AWX Test Web Server on Kubernetes
+- name: AWX Test Server Deployment
   hosts: localhost
+  collections:
+    - kubernetes.core
   gather_facts: no
   tasks:
     - name: Nginx Deployment Oluştur
-      community.kubernetes.k8s:
+      kubernetes.core.k8s:
         state: present
         definition:
           apiVersion: apps/v1
@@ -37,7 +39,7 @@
                       name: awx-test-web-content
 
     - name: Sayfa içeriği oluştur
-      community.kubernetes.k8s:
+      kubernetes.core.k8s:
         state: present
         definition:
           apiVersion: v1
@@ -58,7 +60,7 @@
               </html>
 
     - name: Servis oluşturma
-      community.kubernetes.k8s:
+      kubernetes.core.k8s:
         state: present
         definition:
           apiVersion: v1
@@ -74,7 +76,7 @@
                 targetPort: 80
 
     - name: Ingress Yapılandırıldı
-      community.kubernetes.k8s:
+      kubernetes.core.k8s:
         state: present
         definition:
           apiVersion: networking.k8s.io/v1
