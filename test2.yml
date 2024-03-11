@@ -1,6 +1,6 @@
 ---
 - name: Windows Txt
-  hosts: test
+  hosts: 192.168.2.135
   vars:
     txt_dosya_yolu: C:\\Users\\Administrator\\Desktop\\deneme.txt
   tasks:
