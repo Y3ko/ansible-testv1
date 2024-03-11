@@ -4,11 +4,11 @@
   gather_facts: false
   vars:
     txt_dosya_yolu: C:\\Users\\Administrator\\Desktop\\deneme.txt
-    PASSWORD: '{{ password }}'
-    USERNAME: '{{ username }}'
+    deger1: '{{password}}'
+    deger2: '{{username}}'
   tasks:
     - name: deneme.txt dosyasına değişken değerleri yaz
       win_shell: |
         $dosyaYolu = "{{ txt_dosya_yolu }}"
-        $icerik = "deger1: {{ USERNAME }}`r`ndeger2: {{ PASSWORD }}"
+        $icerik = "deger1: {{ deger1 }}`r`ndeger2: {{ deger2 }}"
         $icerik | Out-File -FilePath $dosyaYolu -Encoding UTF8 -Append
