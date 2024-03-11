@@ -1,0 +1,13 @@
+---
+- name: Txt
+  hosts: windows
+  vars:
+    txt_dosya_yolu: C:\Users\Administrator\Desktop\deneme.txt
+  tasks:
+    - name: deneme.txt dosyasına değişken değerleri yaz
+      win_lineinfile:
+        path: "{{ txt_dosya_yolu }}"
+        line: "{{ item.key }}: {{ item.value }}"
+      loop:
+        - { key: 'deger1', value: "{{ username }}" }
+        - { key: 'deger2', value: "{{ password }}" }
