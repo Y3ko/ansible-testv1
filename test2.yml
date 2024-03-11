@@ -3,7 +3,7 @@
   hosts: 192.168.2.135
   gather_facts: false
   vars:
-    txt_dosya_yolu: C:\\Users\\Administrator\\Desktop\\deneme.txt
+    txt_dosya_yolu: C:\\Users\\Administrator\\Desktop\\deneme2.txt
     deger1: '{{ PASSWORD }}'
     deger2: '{{ USERNAME }}'
     deger3: '{{ CLIENTID }}'
