@@ -1,11 +1,12 @@
 ---
 - name: Windows Txt
   hosts: 192.168.2.135
+  gather_facts: false
   vars:
     txt_dosya_yolu: C:\\Users\\Administrator\\Desktop\\deneme.txt
   tasks:
     - name: deneme.txt dosyasına değişken değerleri yaz
       win_shell: |
         $dosyaYolu = "{{ txt_dosya_yolu }}"
-        $icerik = "deger1: {{ username }}`r`ndeger2: {{ password }}"
+        $icerik = "deger1: {{ USERNAME }}`r`ndeger2: {{ PASSWORD }}"
         $icerik | Out-File -FilePath $dosyaYolu -Encoding UTF8 -Append
