@@ -4,6 +4,7 @@
   gather_facts: false
   vars:
     txt_dosya_yolu: C:\\Users\\Administrator\\Desktop\\deneme.txt
+  extra_vars:
     deger1: '{{ password }}'
     deger2: '{{ username }}'
   tasks:
