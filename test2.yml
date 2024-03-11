@@ -4,8 +4,8 @@
   gather_facts: false
   vars:
     txt_dosya_yolu: C:\\Users\\Administrator\\Desktop\\deneme.txt
-    deger1: '{{ password }}'
-    deger2: '{{ username }}'
+    deger1: '{{password}}'
+    deger2: '{{username}}'
   tasks:
     - name: deneme.txt dosyasına değişken değerleri yaz
       win_shell: |
