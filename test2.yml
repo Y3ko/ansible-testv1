@@ -6,9 +6,11 @@
     txt_dosya_yolu: C:\\Users\\Administrator\\Desktop\\deneme.txt
     deger1: '{{ PASSWORD }}'
     deger2: '{{ USERNAME }}'
+    deger3: '{{ CLIENTID }}'
+    deger4: '{{ SISTEM }}'
   tasks:
     - name: deneme.txt dosyasına değişken değerleri yaz
       win_shell: |
         $dosyaYolu = "{{ txt_dosya_yolu }}"
-        $icerik = "deger1: {{ deger1 }}`r`ndeger2: {{ deger2 }}"
+        $icerik = "deger1: {{ deger1 }}`r`ndeger2: {{ deger2 }}`r`ndeger3: {{ deger3 }}`r`ndeger4: {{ deger4 }}"
         $icerik | Out-File -FilePath $dosyaYolu -Encoding UTF8 -Append
