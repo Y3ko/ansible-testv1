@@ -3,8 +3,6 @@
   hosts: windows
   vars:
     txt_dosya_yolu: C:\\Users\\Administrator\\Desktop\\deneme.txt
-    username: "KullaniciAdiOrnegi"
-    password: "SifreOrnegi"
   tasks:
     - name: deneme.txt dosyasına değişken değerleri yaz
       win_shell: |
