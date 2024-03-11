@@ -1,13 +1,14 @@
 ---
-- name: Txt
+- name: Windows'a txt dosyası oluşturup içine değişkenleri yaz
   hosts: windows
   vars:
     txt_dosya_yolu: C:\Users\Administrator\Desktop\deneme.txt
   tasks:
     - name: deneme.txt dosyasına değişken değerleri yaz
-      win_lineinfile:
-        path: "{{ txt_dosya_yolu }}"
-        line: "{{ item.key }}: {{ item.value }}"
-      loop:
-        - { key: 'deger1', value: "{{ username }}" }
-        - { key: 'deger2', value: "{{ password }}" }
+      win_shell: |
+        $dosyaYolu = "{{ txt_dosya_yolu }}"
+        $icerik = @"
+deger1: {{ username }}
+deger2: {{ password }}
+"@
+        $icerik | Out-File -FilePath $dosyaYolu -Encoding UTF8 -Append
